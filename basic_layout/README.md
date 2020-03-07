@@ -1,16 +1,12 @@
-# basic_layout
+# Basic Layout
 
-A new Flutter project.
+A Flutter app which shows a possible way to lay out a Flutter project - therefore the actual app does not much (code itself is not really scope but can still be used as a reference).
 
-## Getting Started
+There are several ways for a useful layout and this only provides one example. The scale of the project has to be taken into consideration. I tried to explain some cases where scalability can easily be implemented but this of course depends on the app itself. State management can and will make changes in this structure as youz will probably need additional folders - but the main idea can still be applied.
 
-This project is a starting point for a Flutter application.
+## Layout
 
-A few resources to get you started if this is your first Flutter project:
+So we basically have the following folders:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- models: 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
