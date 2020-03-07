@@ -1,8 +1,16 @@
 import 'package:basic_layout/shared/info_card.dart';
 import 'package:basic_layout/views/detail/widgets/code_block.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+/// A second view. Same explanation as for home applies here. In a bigger projects it
+/// could be useful to lay out views in depth as well instead of all views being
+/// in the root. So for eaxample if the detail view can only be accessed from home, the
+/// structure could be:
+///
+/// views / home / detail / detail.dart
+///
+/// So we put views into views! For smaller projects it would be enough to put them
+/// all in the root views folder.
 class DetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

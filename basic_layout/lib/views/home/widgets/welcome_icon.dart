@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 /// This is a widget specifically used in the home (view) widget. If this widget should
-/// be used in other places in the app as well - make it more generic like allow properties
+/// be used in other places in the app as well - make it more generic: allow properties
 /// like the actual icon, maybe padding, color whatever to change it according to needs
 /// and put the widget to shared.
 class WelcomeIcon extends StatelessWidget {
