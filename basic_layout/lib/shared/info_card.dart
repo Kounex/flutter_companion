@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
 
+/// The shared folder is used for widgets which will be used throughout the app. It is
+/// good practice to have a "theme" / "style" for a app which follows a pattern. Bad example
+/// would be something like card widgets which are being used on several places in the
+/// app and if the developer doesn't create a "template card" widget and always creates
+/// a new widget class, he has to change properties of each widget manually and they could
+/// look /behave differently it not maintained correctly.
+///
+/// To summarize: Always think about generalizing widgets, write them to be multi-purpose
+/// and use them as often as possible before deciding to write another one
 class InfoCard extends StatelessWidget {
   /// Will be displayed at the start, above the divider
   final String title;
