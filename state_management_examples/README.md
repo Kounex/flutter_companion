@@ -10,7 +10,7 @@ Flutter has two major kind of widgets: Stateless and Stateful widgets. Stateless
 
 Flutter provides us with the `setState(() {})` method for our Stateful widgets. This method can be called on those states and will trigger a rebuild so we can exactly tell our widget when it has to rebuild in order to display the current value. So usually after a value has been changed which is being displayed in this widget we call the `setState(() {})` method.
 
-This can get tricky if the state a widget relies is not only used in this particular widget but throughout the app. An example would be a model like User. Usually we will refer to this user (its name, maybe age, nickname, whatever) in different views / widgets throughout the app and we want to always use the current value everywhere. So if we change a users name in a paticular Stateful widget, this changed state has to be used and displayed in other views / widgets as well. Using `setState(() {})` to achieve that will get veeeeery unhandy real quick.
+This can get tricky if the state a widget relies on is not only used in this particular widget but throughout the app. An example would be a model like User. Usually we will refer to this user (its name, maybe age, nickname, whatever) in different views / widgets throughout the app and we want to always use the current value everywhere. So if we change a users name in a paticular Stateful widget, this changed state has to be used and displayed in other views / widgets as well. Using `setState(() {})` to achieve that will get veeeeery unhandy real quick.
 
 Thats why we need a better solution.
 
