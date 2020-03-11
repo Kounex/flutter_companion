@@ -8,5 +8,8 @@ There are several ways for a useful layout and this only provides one example. T
 
 So we basically have the following folders:
 
-- models: 
-
+-   models: classes which represents models of our applications
+-   shared: contains widgets which are used throughout the app (common styling etc.)
+-   types: additional types like abstract classes, enums etc.
+-   utils: helper classes / methods for the whole app
+-   views: the actual views / pages of our app
