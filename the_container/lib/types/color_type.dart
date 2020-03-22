@@ -1,0 +1,1 @@
+enum ColorType { dropdown, argb }
