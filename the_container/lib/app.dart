@@ -9,6 +9,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.dark,
       home: BasicShowcaseView(),
       routes: RoutingHelper.routes,
     );

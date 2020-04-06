@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:the_container/shared/custom_drawer.dart';
 import 'package:the_container/utils/color_helper.dart';
+import 'package:the_container/utils/routing_helper.dart';
 
 /// This is a 'basic' version / example of some basic properties of
 /// the container widgets. It is basic, since it is all in one view,
@@ -63,7 +64,39 @@ class _BasicShowcaseViewState extends State<BasicShowcaseView> {
       appBar: AppBar(
         title: Text('Basic Showcase'),
       ),
-      drawer: CustomDrawer(),
+      drawer: Drawer(
+        child: Column(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text('The Container'),
+              accountEmail: Text('Flutter Companion'),
+              otherAccountsPictures: <Widget>[Icon(Icons.border_all)],
+            ),
+            ListTile(
+              title: Text('Basic Showcase'),
+              selected:
+                  RoutingHelper.currentRoute == RoutingHelper.basicShowcase,
+              onTap: () => RoutingHelper.drawerNavigation(
+                  context, RoutingHelper.basicShowcase),
+            ),
+            Divider(),
+            ListTile(
+              title: Text('Better Showcase'),
+              selected:
+                  RoutingHelper.currentRoute == RoutingHelper.betterShowcase,
+              onTap: () => RoutingHelper.drawerNavigation(
+                  context, RoutingHelper.betterShowcase),
+            ),
+            Divider(),
+            ListTile(
+              title: Text('Examples'),
+              selected: RoutingHelper.currentRoute == RoutingHelper.examples,
+              onTap: () => RoutingHelper.drawerNavigation(
+                  context, RoutingHelper.examples),
+            ),
+          ],
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(
           left: 25.0,
@@ -186,118 +219,136 @@ class _BasicShowcaseViewState extends State<BasicShowcaseView> {
                     width: 60.0,
                     child: Text('Color:'),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 25.0),
-                    child: _colorType == 'Dropdown'
-                        ? DropdownButton(
-                            value: _colorDropdown,
-                            items: ColorHelper.availableColors.keys
-                                .map(
-                                  (colorKey) => DropdownMenuItem(
-                                    child: Text(colorKey),
-                                    value:
-                                        ColorHelper.availableColors[colorKey],
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 25.0),
+                      child: _colorType == 'Dropdown'
+                          ? DropdownButton(
+                              value: _colorDropdown,
+                              items: ColorHelper.availableColors.keys
+                                  .map(
+                                    (colorKey) => DropdownMenuItem(
+                                      child: Text(colorKey),
+                                      value:
+                                          ColorHelper.availableColors[colorKey],
+                                    ),
+                                  )
+                                  .toList(),
+                              onChanged: (color) =>
+                                  setState(() => _colorDropdown = color),
+                            )
+                          : Row(
+                              children: <Widget>[
+                                Flexible(
+                                  child: Container(
+                                    constraints: BoxConstraints(maxWidth: 75.0),
+                                    child: TextField(
+                                      controller: _colorAController,
+                                      maxLength: 3,
+                                      inputFormatters: [
+                                        WhitelistingTextInputFormatter
+                                            .digitsOnly,
+                                        TextInputFormatter.withFunction(
+                                            (oldValue, newValue) {
+                                          if (int.parse(newValue.text) > 255) {
+                                            _colorAController.text =
+                                                oldValue.text;
+                                            return oldValue;
+                                          }
+                                          return newValue;
+                                        })
+                                      ],
+                                      decoration: InputDecoration(
+                                        counterText: 'A',
+                                      ),
+                                      onChanged: (_) => setState(() {}),
+                                    ),
                                   ),
-                                )
-                                .toList(),
-                            onChanged: (color) =>
-                                setState(() => _colorDropdown = color),
-                          )
-                        : Row(
-                            children: <Widget>[
-                              Container(
-                                width: 50.0,
-                                child: TextField(
-                                  controller: _colorAController,
-                                  maxLength: 3,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter.digitsOnly,
-                                    TextInputFormatter.withFunction(
-                                        (oldValue, newValue) {
-                                      if (int.parse(newValue.text) > 255) {
-                                        _colorAController.text = oldValue.text;
-                                        return oldValue;
-                                      }
-                                      return newValue;
-                                    })
-                                  ],
-                                  decoration: InputDecoration(
-                                    counterText: 'A',
-                                  ),
-                                  onChanged: (_) => setState(() {}),
                                 ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(left: 25.0),
-                                width: 75.0,
-                                child: TextField(
-                                  controller: _colorRController,
-                                  maxLength: 3,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter.digitsOnly,
-                                    TextInputFormatter.withFunction(
-                                        (oldValue, newValue) {
-                                      if (int.parse(newValue.text) > 255) {
-                                        _colorRController.text = oldValue.text;
-                                        return oldValue;
-                                      }
-                                      return newValue;
-                                    })
-                                  ],
-                                  decoration: InputDecoration(
-                                    counterText: 'R',
+                                Container(width: 25.0),
+                                Flexible(
+                                  child: Container(
+                                    constraints: BoxConstraints(maxWidth: 75.0),
+                                    child: TextField(
+                                      controller: _colorRController,
+                                      maxLength: 3,
+                                      inputFormatters: [
+                                        WhitelistingTextInputFormatter
+                                            .digitsOnly,
+                                        TextInputFormatter.withFunction(
+                                            (oldValue, newValue) {
+                                          if (int.parse(newValue.text) > 255) {
+                                            _colorRController.text =
+                                                oldValue.text;
+                                            return oldValue;
+                                          }
+                                          return newValue;
+                                        })
+                                      ],
+                                      decoration: InputDecoration(
+                                        counterText: 'R',
+                                      ),
+                                      onChanged: (_) => setState(() {}),
+                                    ),
                                   ),
-                                  onChanged: (_) => setState(() {}),
                                 ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(left: 25.0),
-                                width: 75.0,
-                                child: TextField(
-                                  controller: _colorGController,
-                                  maxLength: 3,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter.digitsOnly,
-                                    TextInputFormatter.withFunction(
-                                        (oldValue, newValue) {
-                                      if (int.parse(newValue.text) > 255) {
-                                        _colorGController.text = oldValue.text;
-                                        return oldValue;
-                                      }
-                                      return newValue;
-                                    })
-                                  ],
-                                  decoration: InputDecoration(
-                                    counterText: 'G',
+                                Container(width: 25.0),
+                                Flexible(
+                                  child: Container(
+                                    constraints: BoxConstraints(maxWidth: 75.0),
+                                    child: TextField(
+                                      controller: _colorGController,
+                                      maxLength: 3,
+                                      inputFormatters: [
+                                        WhitelistingTextInputFormatter
+                                            .digitsOnly,
+                                        TextInputFormatter.withFunction(
+                                            (oldValue, newValue) {
+                                          if (int.parse(newValue.text) > 255) {
+                                            _colorGController.text =
+                                                oldValue.text;
+                                            return oldValue;
+                                          }
+                                          return newValue;
+                                        })
+                                      ],
+                                      decoration: InputDecoration(
+                                        counterText: 'G',
+                                      ),
+                                      onChanged: (_) => setState(() {}),
+                                    ),
                                   ),
-                                  onChanged: (_) => setState(() {}),
                                 ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(left: 25.0),
-                                width: 75.0,
-                                child: TextField(
-                                  controller: _colorBController,
-                                  maxLength: 3,
-                                  inputFormatters: [
-                                    WhitelistingTextInputFormatter.digitsOnly,
-                                    TextInputFormatter.withFunction(
-                                        (oldValue, newValue) {
-                                      if (int.parse(newValue.text) > 255) {
-                                        _colorBController.text = oldValue.text;
-                                        return oldValue;
-                                      }
-                                      return newValue;
-                                    })
-                                  ],
-                                  decoration: InputDecoration(
-                                    counterText: 'B',
+                                Container(width: 25.0),
+                                Flexible(
+                                  child: Container(
+                                    constraints: BoxConstraints(maxWidth: 75.0),
+                                    child: TextField(
+                                      controller: _colorBController,
+                                      maxLength: 3,
+                                      inputFormatters: [
+                                        WhitelistingTextInputFormatter
+                                            .digitsOnly,
+                                        TextInputFormatter.withFunction(
+                                            (oldValue, newValue) {
+                                          if (int.parse(newValue.text) > 255) {
+                                            _colorBController.text =
+                                                oldValue.text;
+                                            return oldValue;
+                                          }
+                                          return newValue;
+                                        })
+                                      ],
+                                      decoration: InputDecoration(
+                                        counterText: 'B',
+                                      ),
+                                      onChanged: (_) => setState(() {}),
+                                    ),
                                   ),
-                                  onChanged: (_) => setState(() {}),
                                 ),
-                              ),
-                            ],
-                          ),
+                              ],
+                            ),
+                    ),
                   ),
                 ],
               ),
@@ -358,22 +409,20 @@ class _BasicShowcaseViewState extends State<BasicShowcaseView> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 25.0),
-                    child: ClipRect(
-                      child: DropdownButton<List<BoxShadow>>(
-                        value: _shadow,
-                        items: [0]
-                            .followedBy(kElevationToShadow.keys)
-                            .map(
-                              (shadowKey) => DropdownMenuItem(
-                                child: Text(
-                                  shadowKey.toString(),
-                                ),
-                                value: kElevationToShadow[shadowKey],
+                    child: DropdownButton<List<BoxShadow>>(
+                      value: _shadow,
+                      items: [0]
+                          .followedBy(kElevationToShadow.keys)
+                          .map(
+                            (shadowKey) => DropdownMenuItem(
+                              child: Text(
+                                shadowKey.toString(),
                               ),
-                            )
-                            .toList(),
-                        onChanged: (shadow) => setState(() => _shadow = shadow),
-                      ),
+                              value: kElevationToShadow[shadowKey],
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (shadow) => setState(() => _shadow = shadow),
                     ),
                   )
                 ],
