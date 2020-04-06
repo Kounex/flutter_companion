@@ -21,7 +21,7 @@ class HomeView extends StatelessWidget {
         children: <Widget>[
           WelcomeIcon(),
           InfoCard(
-            title: 'Welcome',
+            title: 'Welcome!',
             text:
                 'You managed to come here, nice! So you actually pulled this repo, compiled the code and deployed it on a phone (physical or emulator, whatever) - thats something to celebrate 🎉\n\nBut seriously: feel free to look through this project to see and understand how this (of many possible) structure is laid out!\n\nI added comments inside the actual dart files which should also help by explaining some stuff - have fun!\n\nPS: The actual code is not really relevant in this example, it should rather just be used as how a project structure could look like!',
           ),
