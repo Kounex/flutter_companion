@@ -10,7 +10,13 @@ class CustomDrawer extends StatelessWidget {
       child: Column(
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: Text('The Container'),
+            accountName: Padding(
+              padding: const EdgeInsets.only(bottom: 6.0),
+              child: Text(
+                'The Container',
+                style: TextStyle(fontSize: 32.0),
+              ),
+            ),
             accountEmail: Text('Flutter Companion'),
             otherAccountsPictures: <Widget>[Icon(Icons.border_all)],
           ),
