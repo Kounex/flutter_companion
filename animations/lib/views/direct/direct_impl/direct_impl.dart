@@ -22,6 +22,8 @@ class _DirectImplViewState extends State<DirectImplView>
   Animation<double> _iconProgress;
   Animation<double> _rotation;
 
+  Animation<Offset> _offset;
+
   @override
   void initState() {
     _controller = AnimationController(
@@ -44,7 +46,11 @@ class _DirectImplViewState extends State<DirectImplView>
         parent: _controller,
         curve: (Interval(0.84, 1.0, curve: Curves.bounceInOut))));
 
-    _controller.forward();
+    _offset = Tween<Offset>(begin: Offset(0.0, 0.0), end: Offset(0.5, 0.0))
+        .animate(CurvedAnimation(
+            parent: _controller, curve: (Interval(0.05, 0.15))));
+    // _controller.forward();
+
     super.initState();
   }
 
@@ -61,21 +67,37 @@ class _DirectImplViewState extends State<DirectImplView>
         slivers: [
           SliverAppBar(
             title: Text('Implementation'),
+            actions: [
+              Transform.translate(
+                offset: Offset(10.0, 10.0),
+                child: IconButton(
+                  icon: Icon(Icons.title),
+                  onPressed: () {
+                    if (_controller.isAnimating) {
+                      _controller.stop();
+                    } else {
+                      _controller.forward();
+                    }
+                  },
+                ),
+              )
+            ],
           ),
           SliverList(
             delegate: SliverChildListDelegate(
               [
                 AnimatedBuilder(
+                  child: InfoCard(
+                    title: 'Oh boy!',
+                    text:
+                        'So we basically set up some nice Intervals so the Widgets fade in sequentially - nice huh?',
+                  ),
                   animation: _controller,
                   builder: (context, child) => Column(
                     children: [
                       FadeTransition(
                         opacity: _opacity1,
-                        child: InfoCard(
-                          title: 'Oh boy!',
-                          text:
-                              'So we basically set up some nice Intervals so the Widgets fade in sequentially - nice huh?',
-                        ),
+                        child: SlideTransition(position: _offset, child: child),
                       ),
                       FadeTransition(
                         opacity: _opacity2,

@@ -57,6 +57,11 @@ class _ImplicitImplViewState extends State<ImplicitImplView> {
                             padding: EdgeInsets.only(top: 12.0),
                             child: AnimatedSwitcher(
                               duration: kAnimationDuration,
+                              transitionBuilder: (child, animation) =>
+                                  ScaleTransition(
+                                      scale: animation,
+                                      child: RotationTransition(
+                                          turns: animation, child: child)),
                               child: _selected
                                   ? Text(
                                       'Selected!',
@@ -80,6 +85,7 @@ class _ImplicitImplViewState extends State<ImplicitImplView> {
                       ),
                       AnimatedPadding(
                         duration: kAnimationDuration,
+                        curve: Curves.bounceInOut,
                         padding: _selected
                             ? EdgeInsets.only(bottom: 24.0)
                             : EdgeInsets.only(bottom: 0.0),
