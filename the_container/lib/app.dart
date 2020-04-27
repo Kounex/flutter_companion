@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_container/utils/routing_helper.dart';
 import 'package:the_container/views/basic_showcase/basic_showcase.dart';
-import 'package:the_container/views/better_showcase/better_showcase.dart';
 
 class App extends StatelessWidget {
   @override

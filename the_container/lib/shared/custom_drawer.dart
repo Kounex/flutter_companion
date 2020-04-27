@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_container/utils/routing_helper.dart';
-import 'package:the_container/views/basic_showcase/basic_showcase.dart';
 
 class CustomDrawer extends StatelessWidget {
   @override

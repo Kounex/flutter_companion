@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:animations/shared/highlighted_text.dart';
 import 'package:animations/shared/info_card.dart';
 import 'package:flutter/material.dart';
