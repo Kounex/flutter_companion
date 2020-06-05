@@ -21,7 +21,7 @@ class App extends StatelessWidget {
         toggleableActiveColor: Colors.deepPurpleAccent,
         highlightColor: Colors.lightBlueAccent,
         buttonTheme: ButtonThemeData(
-          buttonColor: Colors.deepPurpleAccent,
+          buttonColor: Colors.purple,
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: dark.primaryColor,
