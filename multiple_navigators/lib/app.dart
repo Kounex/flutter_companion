@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multiple_navigators/utils/routing_helper.dart';
 
 class App extends StatelessWidget {
   @override
@@ -20,7 +21,7 @@ class App extends StatelessWidget {
         toggleableActiveColor: Colors.deepPurpleAccent,
         highlightColor: Colors.lightBlueAccent,
         buttonTheme: ButtonThemeData(
-          buttonColor: Colors.purple,
+          buttonColor: Colors.deepPurpleAccent,
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: dark.primaryColor,
