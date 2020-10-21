@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:multiple_navigators/utils/routing_helper.dart';
 
 class App extends StatelessWidget {
   @override
